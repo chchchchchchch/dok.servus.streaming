@@ -12,7 +12,7 @@
   DUMP=dump.md
   MD2TEX=md2tex.tex
 
-  wget $PAD2HTMLURL -O $DUMP
+  wget $PAD2HTMLURL --no-check-certificate -O $DUMP
   
    cat $DUMP |
   sed "s,% GRAFIK: ,$GRAFIKSTART,g" |           # OPEN GRAFIK TAG
@@ -73,7 +73,7 @@
 
   pdflatex -output-directory o $TMPTEX 
 
-  cp o/${TMPTEX%%.*}.pdf test.pdf
+  cp o/${TMPTEX%%.*}.pdf latest.pdf
 
   rm o/${TMPTEX%%.*}.idx o/${TMPTEX%%.*}.aux \
      o/${TMPTEX%%.*}.log o/${TMPTEX%%.*}.out \
