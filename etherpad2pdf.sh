@@ -77,7 +77,7 @@
 
   rm o/${TMPTEX%%.*}.idx o/${TMPTEX%%.*}.aux \
      o/${TMPTEX%%.*}.log o/${TMPTEX%%.*}.out \
-     $TMPTEX
+     $TMPTEX $MD2TEX
 
 
 exit 0;
