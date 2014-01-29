@@ -4,6 +4,14 @@ document and converted to a pdf file using LaTeX
 https://etherpad.servus.at/p/streamdoku
 
 
+USED SOFTWARE
+-------------
+
+GNU coreutils 8.12.197-032bb
+texlive/pdflatex
+pandoc
+
+
 Custom Etherpad Options 
 -----------------------
 
