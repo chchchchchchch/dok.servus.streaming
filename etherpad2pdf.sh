@@ -40,25 +40,20 @@
 
   INPUT=md2tex.tex
 
-  echo "\documentclass[8pt,cleardoubleempty]{scrbook}" 		  >  $TMPTEX
+  echo "\documentclass[8pt,cleardoubleempty]{scrbook}"            >  $TMPTEX
   echo "\usepackage[utf8]{inputenc}"                              >> $TMPTEX
   echo "\usepackage{i/sty/A5}"                                    >> $TMPTEX
   echo "\usepackage{i/sty/140129}"                                >> $TMPTEX
-  echo "\setlength\textheight{170mm}"				  >> $TMPTEX
-  echo "\setlength\topmargin{-17mm}"				  >> $TMPTEX
+  echo "\setlength\textheight{170mm}"                             >> $TMPTEX
+  echo "\setlength\topmargin{-17mm}"                              >> $TMPTEX
 
   echo "\setlength\textwidth{95mm}"                               >> $TMPTEX
-  echo "\setlength\oddsidemargin{0mm}"				  >> $TMPTEX
-  echo "\setlength\evensidemargin{0mm}"				  >> $TMPTEX
+  echo "\setlength\oddsidemargin{0mm}"                            >> $TMPTEX
+  echo "\setlength\evensidemargin{0mm}"                           >> $TMPTEX
 
    echo "\parindent=0pt"                                          >> $TMPTEX
 
-   echo "\begin{document}" 					  >> $TMPTEX
-
-#  echo "\titlepages{%"                                           >> $TMPTEX
-#  echo "\url{http://etherpad.servus.at/"                         >> $TMPTEX
-#  echo "p/streamdoku}}{}{}"                                      >> $TMPTEX
-#  echo "\hardpagebreak"                                          >> $TMPTEX
+   echo "\begin{document}"                                        >> $TMPTEX
 
    echo "\titlepages{%"                                           >> $TMPTEX
    echo "\url{http://etherpad.servus.at/p/streamdoku}}"           >> $TMPTEX
@@ -71,7 +66,7 @@
 #  # Keine "Hurenkinder"
 #  echo "\widowpenalty = 10000 \displaywidowpenalty = 10000"      >> $TMPTEX
 
-   echo "\input{"$INPUT"}"					  >> $TMPTEX
+   echo "\input{"$INPUT"}"                                        >> $TMPTEX
 
    echo "\end{document}"                                          >> $TMPTEX
 #  =========================================================================  #
