@@ -2,10 +2,12 @@
 
   TMPTEX=`date +%s`.tex; TMPDIR=tmp; rm $TMPDIR/*.* ; FORKABLE=i/a  
 
-  GRAFIKSTART="\\\grafik{i/pdf/" 
+  PDFDIR=i/pdf/
+
+  GRAFIKSTART="\\\grafik{$PDFDIR" 
   GRAFIKEND="}"
 
-  FULLPAGESTART="\\\fullpage{i/pdf/" 
+  FULLPAGESTART="\\\fullpage{$PDFDIR" 
   FULLPAGEEND="}"
 
   PAD2HTMLURL=https://etherpad.servus.at/p/streamdoku/export/txt
@@ -27,14 +29,37 @@
   for GRAFIK in `egrep "$GRAFIKSTART|$FULLPAGESTART" $MD2TEX | \
                  cut -d "{" -f 2 | cut -d "}" -f 1`
    do
-      if [ -f ${GRAFIK}.pdf ]; then
 
-           echo ${GRAFIK}.pdf "exists"
-      else
-          echo ${GRAFIK}.pdf "does not exist"
-          sed -i "s,^.*grafik.*${GRAFIK}.*$,,g"   $MD2TEX
-          sed -i "s,^.*fullpage.*${GRAFIK}.*$,,g" $MD2TEX
-      fi
+       BASENAME=`basename $GRAFIK | cut -d "." -f 1`
+       SVG=`find . -name "$BASENAME.svg"`
+       PDF=`find $PDFDIR -name "$BASENAME.pdf"`
+
+       echo $BASENAME
+
+       if [ `echo $PDF | wc -c` -ge 2 ]; then
+
+         if [ $PDF -nt $SVG ]; then
+  
+              echo $PDF "is up-to-date"
+          else
+              echo $PDF "is too old"
+
+              inkscape --export-pdf=${PDFDIR}/${BASENAME}.pdf $SVG
+         fi
+
+        else
+  
+         if [ `echo $SVG | wc -c` -ge 2 ]; then
+
+              inkscape --export-pdf=${PDFDIR}/${BASENAME}.pdf $SVG
+   
+          else
+   
+            echo ${GRAFIK}.pdf "does not exist"
+            sed -i "s,^.*grafik.*${GRAFIK}.*$,,g"   $MD2TEX
+            sed -i "s,^.*fullpage.*${GRAFIK}.*$,,g" $MD2TEX
+         fi
+       fi
   done
 
 
@@ -67,6 +92,19 @@
 #  echo "\widowpenalty = 10000 \displaywidowpenalty = 10000"      >> $TMPTEX
 
    echo "\input{"$INPUT"}"                                        >> $TMPTEX
+
+
+   LOGODIR="i/pdf/logos/"
+#  echo "\newpage"                                                >> $TMPTEX                        
+   echo "\vfill"                                                  >> $TMPTEX                        
+   echo "\thispagestyle{empty}"                                   >> $TMPTEX                        
+   echo "Unterstützt von: \newline \newline \newline"             >> $TMPTEX                        
+   echo "\epsfig{file=$LOGODIR/servus.pdf,height=.05\textwidth}"  >> $TMPTEX
+   echo "\hfill"                                                  >> $TMPTEX                        
+   echo "\epsfig{file=$LOGODIR/kunstuni.pdf,height=.05\textwidth}">> $TMPTEX
+   echo "\hfill"                                                  >> $TMPTEX                        
+   echo "\epsfig{file=$LOGODIR/dorf.pdf,height=.05\textwidth}"    >> $TMPTEX
+
 
    echo "\end{document}"                                          >> $TMPTEX
 #  =========================================================================  #
