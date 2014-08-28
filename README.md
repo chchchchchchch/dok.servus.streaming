@@ -7,9 +7,9 @@ https://etherpad.servus.at/p/streamdoku
 USED SOFTWARE
 -------------
 
-GNU coreutils 8.12.197-032bb
-texlive/pdflatex
-pandoc
+- GNU coreutils 8.12.197-032bb
+- texlive/pdflatex
+- **pandoc**
 
 
 Custom Etherpad Options 
