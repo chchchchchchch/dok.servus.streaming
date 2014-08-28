@@ -1,6 +1,6 @@
 #!/bin/bash
 
-  TMPTEX=`date +%s`.tex; TMPDIR=tmp; rm $TMPDIR/*.* ; FORKABLE=i/a  
+  TMPTEX=`date +%s`.tex; # TMPDIR=tmp; rm $TMPDIR/*.* ; FORKABLE=i/a  
 
   PDFDIR=i/pdf/
 
@@ -95,7 +95,7 @@
 
 
    LOGODIR="i/pdf/logos/"
-#  echo "\newpage"                                                >> $TMPTEX                        
+   echo "\newpage"                                                >> $TMPTEX                        
    echo "\vfill"                                                  >> $TMPTEX                        
    echo "\thispagestyle{empty}"                                   >> $TMPTEX                        
    echo "Unterstützt von: \newline \newline \newline"             >> $TMPTEX                        
