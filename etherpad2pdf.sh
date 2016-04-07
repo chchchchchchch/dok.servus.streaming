@@ -16,7 +16,7 @@
 
   wget $PAD2HTMLURL --no-check-certificate -O $DUMP
   
-   cat $DUMP |
+  cat $DUMP |
   sed "s,% GRAFIK: ,$GRAFIKSTART,g" |           # OPEN GRAFIK TAG
   sed "/grafik/s/$/$GRAFIKEND\n/g"|             # CLOSE GRAFIK TAG
   sed "s,% FULLPAGE: ,$FULLPAGESTART,g" |       # OPEN FULLPAGE TAG
